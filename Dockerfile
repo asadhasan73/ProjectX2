@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --upgrade pip setuptools rules_python
+RUN python3 -m pip install --upgrade pip setuptools rules_python
 
 RUN which clang
 
