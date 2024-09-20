@@ -29,8 +29,10 @@ jobs:
 
     - name: Build CIFuzz Docker Image
       run: |
+        set -x
         ./build.sh
 
     - name: Run CIFuzz Docker Container
       run: |
+        set -x
         ./run.sh
