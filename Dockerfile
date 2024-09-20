@@ -5,7 +5,7 @@ FROM ubuntu:latest
 WORKDIR /ProjectX
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3 git curl clang llvm lcov default-jdk zip build-essential && \
+    apt-get install -y --no-install-recommends python3 git curl clang llvm lcov default-jdk zip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -25,6 +25,11 @@ RUN curl -OL https://golang.org/dl/go1.21.0.linux-amd64.tar.gz && \
 
 # Add Go to the path (to ensure it’s available in subsequent Docker commands)
 ENV PATH="/usr/local/go/bin:${PATH}"
+
+# Install development libraries (libcap-dev) for building libminijail
+RUN apt-get update && \
+    apt-get install -y libcap-dev build-essential
+
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ouspg/ProjectX2/main/install.sh)"
 
