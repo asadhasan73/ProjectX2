@@ -19,7 +19,11 @@ RUN curl -L https://github.com/bazelbuild/bazelisk/releases/latest/download/baze
 RUN which bazel
 RUN bazel --version
 
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/CodeIntelligenceTesting/cifuzz/main/install.sh)"
+# RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/CodeIntelligenceTesting/cifuzz/main/install.sh)"
+# Updating latest installation from script
+RUN git clone https://github.com/asadhasan73/cifuzz && \
+    cd cifuzz && \
+    make install
 
 #Provide your repository link below
 RUN git clone https://github.com/asadhasan73/ProjectX2
