@@ -35,4 +35,7 @@ jobs:
     - name: Build and run CIFuzz Docker container
       run: |
         docker build -t cifuzz-docker-image .
-        docker run cifuzz-docker-image
+        
+    - name: Run CIFuzz Docker container
+      run: |
+        docker run --rm cifuzz-docker-image
