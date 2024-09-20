@@ -5,11 +5,11 @@ FROM ubuntu:latest
 WORKDIR /ProjectX
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3 git curl clang llvm lcov default-jdk zip && \
+    apt-get install -y --no-install-recommends python3 python3-pip git curl clang llvm lcov default-jdk zip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install --upgrade pip setuptools rules_python
+#RUN pip install setuptools rules_python
 
 RUN which clang
 
@@ -47,4 +47,4 @@ RUN git clone https://github.com/asadhasan73/ProjectX2
 WORKDIR /ProjectX/ProjectX2
 RUN ls -a
 
-CMD ["sh", "-c", "cifuzz run test:test --use-sandbox=false > /ProjectX/ProjectX2/fuzzing.log 2>&1 && cat /ProjectX/ProjectX2/fuzzing.log"]
+CMD ["sh", "-c", "cifuzz run test:test_bin --use-sandbox=false > /ProjectX/ProjectX2/fuzzing.log 2>&1 && cat /ProjectX/ProjectX2/fuzzing.log"]
