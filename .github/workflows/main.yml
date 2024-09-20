@@ -38,5 +38,4 @@ jobs:
         
     - name: Run CIFuzz Docker container
       run: |
-        docker run -it cifuzz-docker-image /bin/bash
-        cifuzz run test:test_bin
+        docker run cifuzz-docker-image cifuzz run test:test_bin
