@@ -4,8 +4,6 @@ FROM ubuntu:latest
 #Default directory
 WORKDIR /ProjectX
 
-
-
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 git curl clang llvm lcov default-jdk zip build-essential && \
     apt-get clean && \
@@ -18,6 +16,15 @@ RUN curl -L https://github.com/bazelbuild/bazelisk/releases/latest/download/baze
 
 RUN which bazel
 RUN bazel --version
+
+# Install Go (required by the ProjectX2 installation script)
+RUN curl -OL https://golang.org/dl/go1.21.0.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz && \
+    export PATH=$PATH:/usr/local/go/bin && \
+    go version
+
+# Add Go to the path (to ensure it’s available in subsequent Docker commands)
+ENV PATH="/usr/local/go/bin:${PATH}"
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ouspg/ProjectX2/main/install.sh)"
 
