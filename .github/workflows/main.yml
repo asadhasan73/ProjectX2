@@ -32,9 +32,9 @@ jobs:
         set -x
         ./build.sh
 
-    - name: Build and run CIFuzz Docker container
-      run: |
-        docker build -t cifuzz-docker-image .
+#    - name: Build and run CIFuzz Docker container
+#      run: |
+#        docker build -t cifuzz-docker-image .
         
     - name: Run CIFuzz Docker container
       run: |
